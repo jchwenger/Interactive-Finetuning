@@ -1,0 +1,12 @@
+# MacOS
+**/.DS_Store
+
+# vim
+**/*.sw*
+
+# python
+**/.ipynb_checkpoints
+**/__pycache__
+
+# ruff
+.ruff_cache
