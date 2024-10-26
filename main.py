@@ -201,6 +201,10 @@ class DigitRecognizerApp:
     def clear_canvas(self):
         self.canvas.delete("all")
         self.scaled_canvas = np.zeros((28, 28))
+        # Remove prediction probabilities on the plot
+        for rect in self.bar_container:
+            rect.set_height(0)
+        self.plot_canvas.draw()
 
     def predict(self):
         canvas_data = self.get_canvas_image()
