@@ -27,13 +27,14 @@ MODEL_PATH = MODELS_DIR / "trained_model.pt"
 
 # Load the model
 model = DenseNet()
-trainer = Trainer(model)
 
 # Check if a trained model exists, load if present, otherwise train
 if os.path.exists(MODEL_PATH):
-    model = torch.jit.load(MODEL_PATH)
+    model.load_state_dict(torch.load(MODEL_PATH))
     model.eval()
     print("Loaded pre-trained model.")
+    # load the trainer after loading the model, for finetuning
+    trainer = Trainer(model)
 else:
     # Load MNIST data
     transform = v2.Compose([v2.ToImage(), v2.ToDtype(torch.float32, scale=True)])
@@ -43,10 +44,10 @@ else:
     train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
 
     # Train the model
+    trainer = Trainer(model)
     trainer.train(train_loader, epochs=5)
-    torch.jit.save(torch.jit.script(model), MODEL_PATH)
+    torch.save(model.state_dict(), MODEL_PATH)
     print("Model trained and saved.")
-
 
 # Define Tkinter GUI
 class DigitRecognizerApp:
@@ -212,6 +213,7 @@ class DigitRecognizerApp:
             output = self.model(canvas_data)
             probabilities = F.softmax(output, dim=1).cpu().numpy().flatten()
             predicted_label = np.argmax(probabilities)
+        # print([(i, p.item()) for i, p in enumerate(probabilities)])
 
         # Update prediction probabilities on the plot
         for rect, prob in zip(self.bar_container, probabilities):
