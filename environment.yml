@@ -1,20 +1,31 @@
-name: finetuner
+name: interactive-finetuning
 channels:
   - conda-forge
 dependencies:
+  - _openmp_mutex=4.5=7_kmp_llvm
   - bzip2=1.0.8=h99b78c6_7
   - ca-certificates=2024.8.30=hf0a4a13_0
+  - libblas=3.11.0=5_h51639a9_openblas
+  - libcblas=3.11.0=5_hb0561ab_openblas
+  - libcxx=21.1.8=hf598326_0
   - libexpat=2.6.3=hf9b8971_0
   - libffi=3.4.2=h3422bc3_5
+  - libgcc=15.2.0=hcbb3090_16
+  - libgfortran=15.2.0=h07b0088_16
+  - libgfortran5=15.2.0=hdae7583_16
+  - liblapack=3.11.0=5_hd9741b5_openblas
   - libmpdec=4.0.0=h99b78c6_0
+  - libopenblas=0.3.30=openmp_ha158390_3
   - libsqlite=3.46.1=hc14010f_0
   - libzlib=1.3.1=h8359307_2
+  - llvm-openmp=21.1.8=h4a912ad_0
   - ncurses=6.5=h7bae524_1
   - openssl=3.3.2=h8359307_0
   - pip=24.2=pyh8b19718_1
   - python=3.12.7=h739c21a_0_cpython
   - python_abi=3.12=5_cp312
   - readline=8.2=h92ec313_1
+  - scipy=1.16.3=py312h39258fd_2
   - setuptools=75.1.0=pyhd8ed1ab_0
   - tzdata=2024b=hc8b5060_0
   - wheel=0.44.0=pyhd8ed1ab_0
@@ -42,4 +53,4 @@ dependencies:
       - torch==2.5.0
       - torchvision==0.20.0
       - typing-extensions==4.12.2
-prefix: /opt/homebrew/Caskroom/miniforge/base/envs/finetuner
+prefix: /Users/jcw/miniforge3/envs/interactive-finetuning
